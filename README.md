@@ -1,7 +1,7 @@
 # DAA-P4-Programacion-Dinamica
 Repositorio para la Práctica 4 Diseño y Análisis de Algoritmos - Experimentación con Programación Dinámica
-@Autor: Himar Edhey Hernández Alonso
-@Autor: Aarón Jano Barreto
+- **@Autor:** *Himar Edhey Hernández Alonso*
+- **@Autor:** *Aarón Jano Barreto*
 
 # Descripción de la práctica
 ## Imlementación
