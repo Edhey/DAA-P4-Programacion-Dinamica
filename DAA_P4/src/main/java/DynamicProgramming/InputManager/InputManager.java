@@ -18,7 +18,8 @@ public class InputManager {
       Node firstNode = null;
       Node secondNode = null;
       while ((linea = br.readLine()) != null) {
-        String[] parts = linea.split(" ");        boolean firstIsGenerated = false;
+        String[] parts = linea.split(" ");        
+        boolean firstIsGenerated = false;
         boolean secondIsGenerated = false;
         for (Node node : generatedNodes) {
           if (node.getName() == parts[0]) {
@@ -42,13 +43,12 @@ public class InputManager {
           generatedNodes.add(node);
           secondNode = node;
         }
-        firstNode.addAdjacent(secondNode, Integer.parseInt(parts[2]));
-        secondNode.addAdjacent(firstNode, Integer.parseInt(parts[2]));
-
+        firstNode.addAdjacent(secondNode, Double.parseDouble(parts[2]));
+        secondNode.addAdjacent(firstNode, Double.parseDouble(parts[2]));
       }
       return new Graph(generatedNodes);
-    } catch (IOException e) {
-      e.printStackTrace();
+    } catch (IOException error) {
+      error.printStackTrace();
     }
     return null;
   }

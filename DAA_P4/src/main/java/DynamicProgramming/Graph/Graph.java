@@ -28,4 +28,8 @@ public class Graph {
   public ArrayList<Node> getNodes() {
     return this.nodes;
   }
+
+  public void print() {
+
+  }
 }

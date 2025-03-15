@@ -14,12 +14,12 @@ public class GraphGenerator {
    * @return The generated graph.
    */
   public static Graph generateGraph(int nodeNumber) {
-    Graph graph = new Graph();
     ArrayList<Node> nodes = new ArrayList<>();
-    for (int i = 0; i < nodeNumber; i++) {
-      nodes.add(new Node("Node " + i));
+    for (int i = 1; i <= nodeNumber; i++) {
+      nodes.add(new Node(String.valueOf(i)));
     }
-
+    Graph graph = new Graph(nodes);
+    
     for (int i = 0; i < nodes.size(); i++) {
       for (int j = i + 1; j < nodes.size(); j++) {
         generateEdge(graph, nodes.get(i), nodes.get(j));

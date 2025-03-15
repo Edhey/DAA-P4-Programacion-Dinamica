@@ -22,6 +22,7 @@ import org.apache.commons.cli.*;
 public class ArgsParser {
   public String file;
   public int timeLimit = 5;
+  public int nodeNumber = 4;
 
   /**
    * Constructor for the ArgsParser class.
@@ -32,28 +33,34 @@ public class ArgsParser {
     Options options = new Options();
 
     options.addOption(Option.builder("f")
-      .required()
-      .longOpt("input-file")
-      .desc("input file with the problem")
-      .hasArg()
-      .argName("file")
-      .build());
+        .longOpt("input-file")
+        .desc("input file with the problem")
+        .hasArg()
+        .argName("file")
+        .build());
     options.addOption(Option.builder("t")
-      .longOpt("time-limit")
-      .desc("time limit for the execution in minutes")
-      .hasArg()
-      .argName("limit")
-      .build());
+        .longOpt("time-limit")
+        .desc("time limit for the execution in minutes")
+        .hasArg()
+        .argName("limit")
+        .build());
+    options.addOption(Option.builder("n")
+        .longOpt("node-number")
+        .desc("number of nodes to generate")
+        .hasArg()
+        .argName("number")
+        .build());
 
     CommandLineParser parser = new DefaultParser();
     HelpFormatter formatter = new HelpFormatter();
     try {
       CommandLine cmd = parser.parse(options, args);
-      file = cmd.getOptionValue("input-file");
-      if (cmd.hasOption("time-limit")) {
+      if (cmd.hasOption("input-file"))
+        file = cmd.getOptionValue("input-file");
+      if (cmd.hasOption("time-limit"))
         timeLimit = Integer.parseInt(cmd.getOptionValue("time-limit"));
-      }
-      
+      if (cmd.hasOption("node-number"))
+        nodeNumber = Integer.parseInt(cmd.getOptionValue("node-number"));
     } catch (ParseException e) {
       System.err.println("Error en los argumentos: " + e.getMessage());
       formatter.printHelp("java CommandLineExample", options);

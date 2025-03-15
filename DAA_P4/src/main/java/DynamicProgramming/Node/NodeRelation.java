@@ -1,27 +1,27 @@
 package DynamicProgramming.Node;
 
-class NodeRelation<A, B> {
-  private A first;
-  private B second;
+class NodeRelation {
+  private Node neighbour;
+  private Double cost;
 
-  public NodeRelation(A first, B second) {
-    this.first = first;
-    this.second = second;
+  public NodeRelation(Node neighbour, Double cost) {
+    this.neighbour = neighbour;
+    this.cost = cost;
   }
 
-  public A getFirst() {
-    return first;
+  public Node getNeighbour() {
+    return neighbour;
   }
 
-  public B getSecond() {
-    return second;
+  public Double getCost() {
+    return cost;
   }
 
-  public void setFirst(A first) {
-    this.first = first;
+  public void setNeighbour(Node neighbour) {
+    this.neighbour = neighbour;
   }
 
-  public void setSecond(B second) {
-    this.second = second;
+  public void setCost(Double cost) {
+    this.cost = cost;
   }
 }

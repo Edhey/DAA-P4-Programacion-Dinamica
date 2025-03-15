@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug (Launch)-Main<DAA_P4>",
+      "request": "launch",
+      "mainClass": "DynamicProgramming.Main",
+      "projectName": "DAA_P4",
+      "args": "-f input.inp -t 10 -n 4",
+      "stopOnEntry": true,
+      "vmArgs": "-Dexec.mainClass=DynamicProgramming.Main"
+    }
+  ]
+}
