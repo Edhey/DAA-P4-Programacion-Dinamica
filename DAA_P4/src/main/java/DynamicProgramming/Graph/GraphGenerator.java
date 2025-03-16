@@ -1,6 +1,8 @@
 package DynamicProgramming.Graph;
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 import DynamicProgramming.Node.Node;
 
@@ -18,25 +20,14 @@ public class GraphGenerator {
     for (int i = 1; i <= nodeNumber; i++) {
       nodes.add(new Node(String.valueOf(i)));
     }
-    Graph graph = new Graph(nodes);
-    
+    Set<Node> nodesSet = new HashSet<>(nodes);
+
+    ArrayList<Edge> edges = new ArrayList<>();
     for (int i = 0; i < nodes.size(); i++) {
       for (int j = i + 1; j < nodes.size(); j++) {
-        generateEdge(graph, nodes.get(i), nodes.get(j));
+        edges.add(new Edge(nodes.get(i), nodes.get(j), (int) (Math.random() * 10)));
       }
     }
-    return graph;
-  }
-
-  /**
-   * Generates an arista between two nodes.
-   * @param graph The graph to add the edge.
-   * @param node1 The first node.
-   * @param node2 The second node.
-   */
-  private static void generateEdge(Graph graph, Node node1, Node node2) {
-    double weight = Math.random() * 100;
-    node1.addAdjacent(node2, weight);
-    node2.addAdjacent(node1, weight);
+    return new Graph(nodesSet, edges);
   }
 }

@@ -2,9 +2,9 @@ package DynamicProgramming.Node;
 
 class NodeRelation {
   private Node neighbour;
-  private Double cost;
+  private int cost;
 
-  public NodeRelation(Node neighbour, Double cost) {
+  public NodeRelation(Node neighbour, int cost) {
     this.neighbour = neighbour;
     this.cost = cost;
   }
@@ -13,7 +13,7 @@ class NodeRelation {
     return neighbour;
   }
 
-  public Double getCost() {
+  public int getCost() {
     return cost;
   }
 
@@ -21,7 +21,7 @@ class NodeRelation {
     this.neighbour = neighbour;
   }
 
-  public void setCost(Double cost) {
+  public void setCost(int cost) {
     this.cost = cost;
   }
 }
