@@ -1,6 +1,6 @@
 package DynamicProgramming.Graph;
 
-import DynamicProgramming.Node.Node;
+import DynamicProgramming.Graph.Node.Node;
 
 public class Edge {
   private Node origin;

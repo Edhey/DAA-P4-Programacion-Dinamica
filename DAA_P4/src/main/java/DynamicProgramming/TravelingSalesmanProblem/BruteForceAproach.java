@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import DynamicProgramming.Graph.Edge;
 import DynamicProgramming.Graph.Graph;
-import DynamicProgramming.Node.Node;
+import DynamicProgramming.Graph.Node.Node;
 
 public class BruteForceAproach extends TravelingSalesmanProblem {
   @Override

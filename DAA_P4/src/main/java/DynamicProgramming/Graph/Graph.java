@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 
 import DynamicProgramming.Graph.GraphPrinter.*;
-import DynamicProgramming.Node.Node;
+import DynamicProgramming.Graph.Node.Node;
+
 import java.util.Set;
 import java.util.HashSet;
 

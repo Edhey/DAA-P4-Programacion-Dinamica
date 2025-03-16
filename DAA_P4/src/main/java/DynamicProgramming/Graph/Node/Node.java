@@ -1,4 +1,4 @@
-package DynamicProgramming.Node;
+package DynamicProgramming.Graph.Node;
 
 import java.util.Objects;
 

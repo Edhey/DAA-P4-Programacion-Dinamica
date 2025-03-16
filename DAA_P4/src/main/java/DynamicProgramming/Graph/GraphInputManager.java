@@ -1,14 +1,17 @@
-package DynamicProgramming.InputManager;
+package DynamicProgramming.Graph;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
-import DynamicProgramming.Graph.*;
-import DynamicProgramming.Node.Node;
+import java.nio.file.*;
+import java.util.Iterator;
 
-public class InputManager {
-  public static Graph readInput(String path) {
+import DynamicProgramming.Graph.Node.Node;
+
+public class GraphInputManager {
+  public static Graph readInputFromFile(String path) {
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
       String linea;
       linea = bufferedReader.readLine();
@@ -16,7 +19,7 @@ public class InputManager {
       Node secondNode = null;
       Graph graph = new Graph();
       while ((linea = bufferedReader.readLine()) != null) {
-        String[] parts = linea.split(" ");        
+        String[] parts = linea.split(" ");
         firstNode = new Node(parts[0]);
         graph.addNode(firstNode);
         secondNode = new Node(parts[1]);
@@ -32,5 +35,18 @@ public class InputManager {
       error.printStackTrace();
     }
     return null;
+  }
+
+  public static ArrayList<Graph> readInputFromDirectory(String pathName) {
+    Path path = Paths.get(pathName);
+    ArrayList<Graph> graphs = new ArrayList<>();
+    try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
+      for (Path file : stream) {
+        graphs.add(readInputFromFile(file.toString()));
+      }
+    } catch (IOException | DirectoryIteratorException error) {
+      error.printStackTrace();
+    }
+    return graphs;
   }
 }

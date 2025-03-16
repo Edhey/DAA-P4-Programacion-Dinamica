@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import DynamicProgramming.Graph.Edge;
 import DynamicProgramming.Graph.Graph;
-import DynamicProgramming.Node.Node;
+import DynamicProgramming.Graph.Node.Node;
 
 public class VorazAproach extends TravelingSalesmanProblem {
   @Override

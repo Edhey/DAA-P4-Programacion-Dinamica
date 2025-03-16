@@ -1,13 +1,15 @@
 package DynamicProgramming.TravelingSalesmanProblem;
 
+import DynamicProgramming.ArgsParser.TSPAlgorithm;
+
 public class TravelingSalesmanFactory {
-  static TravelingSalesmanProblem getTravelingSalesmanProblem(String type) {
-    switch (type) {
-      case "BruteForce":
+  public static TravelingSalesmanProblem getTravelingSalesmanProblem(TSPAlgorithm algorithm) {
+    switch (algorithm) {
+      case BRUTE_FORCE:
         return new BruteForceAproach();
-      case "Voraz":
+      case VORAZ:
         return new VorazAproach();
-      case "Dinamico":
+      case DYNAMIC:
         return new DinamicPrograming();
       default:
         return null;

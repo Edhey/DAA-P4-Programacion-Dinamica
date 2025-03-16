@@ -2,9 +2,10 @@ package DynamicProgramming.Graph;
 
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.HashSet;
 
-import DynamicProgramming.Node.Node;
+import DynamicProgramming.Graph.Node.Node;
+
+import java.util.HashSet;
 
 /**
  * Class that represents a graph.
