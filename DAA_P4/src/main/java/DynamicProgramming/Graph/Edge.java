@@ -14,8 +14,8 @@ public class Edge {
   }
 
   public boolean hasNode(Node node) {
-    return (this.origin.getName() == node.getName() 
-           || this.destination.getName() == node.getName());
+    return (this.origin.getName().equals(node.getName()) 
+           || this.destination.getName().equals(node.getName()));
   }
 
   public Node getOrigin() {

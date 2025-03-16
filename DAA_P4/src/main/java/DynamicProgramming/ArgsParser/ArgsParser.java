@@ -12,7 +12,7 @@
  * @see https://github.com/Edhey/DAA-P4-Programacion-Dinamica
  *
  */
-package DynamicProgramming;
+package DynamicProgramming.ArgsParser;
 
 import org.apache.commons.cli.*;
 
@@ -23,6 +23,7 @@ public class ArgsParser {
   public String file;
   public int timeLimit = 5;
   public int nodeNumber = 4;
+  public TSPAlgorithm algorithm = TSPAlgorithm.Voraz;
 
   /**
    * Constructor for the ArgsParser class.
@@ -37,6 +38,12 @@ public class ArgsParser {
         .desc("input file with the problem")
         .hasArg()
         .argName("file")
+        .build());
+    options.addOption(Option.builder("a")
+        .longOpt("algorithm")
+        .desc("algorithm to use")
+        .hasArg()
+        .argName("algorithm")
         .build());
     options.addOption(Option.builder("t")
         .longOpt("time-limit")
@@ -61,6 +68,19 @@ public class ArgsParser {
         timeLimit = Integer.parseInt(cmd.getOptionValue("time-limit"));
       if (cmd.hasOption("node-number"))
         nodeNumber = Integer.parseInt(cmd.getOptionValue("node-number"));
+      if (cmd.hasOption("algorithm")) {
+        switch (cmd.getOptionValue("algorithm")) {
+          case "BruteForce":
+            algorithm = TSPAlgorithm.BruteForce;
+          case "Voraz":
+            algorithm = TSPAlgorithm.Voraz;
+          case "Dinamico":
+            algorithm = TSPAlgorithm.Dinamico;        
+          default:
+            break;
+        }
+      }
+        
     } catch (ParseException e) {
       System.err.println("Error en los argumentos: " + e.getMessage());
       formatter.printHelp("java CommandLineExample", options);

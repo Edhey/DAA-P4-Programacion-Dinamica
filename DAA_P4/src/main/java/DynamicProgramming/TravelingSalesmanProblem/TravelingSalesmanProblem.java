@@ -5,15 +5,9 @@ import DynamicProgramming.Node.Node;
 import java.util.ArrayList;
 
 public abstract class TravelingSalesmanProblem {
-  private Graph graph;
-  private int pathCost;
+  protected int pathCost;
 
-  public TravelingSalesmanProblem(Graph graph) {
-    this.graph = graph;
-    this.pathCost = 0;
-  }
-
-  public abstract ArrayList<Node> solve(String startNodeName);
+  public abstract ArrayList<Node> solve(Graph graph, String startNodeName);
 
   public final void printSolution(ArrayList<Node> solution) {
     System.out.println("Solution: ");
