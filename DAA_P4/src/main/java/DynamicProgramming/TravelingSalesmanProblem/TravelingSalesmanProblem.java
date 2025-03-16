@@ -5,8 +5,8 @@ import DynamicProgramming.Node.Node;
 import java.util.ArrayList;
 
 public abstract class TravelingSalesmanProblem {
-  protected Graph graph;
-  protected int pathCost;
+  private Graph graph;
+  private int pathCost;
 
   public TravelingSalesmanProblem(Graph graph) {
     this.graph = graph;
