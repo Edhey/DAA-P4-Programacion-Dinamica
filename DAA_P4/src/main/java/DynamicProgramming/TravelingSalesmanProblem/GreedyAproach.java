@@ -6,7 +6,7 @@ import DynamicProgramming.Graph.Edge;
 import DynamicProgramming.Graph.Graph;
 import DynamicProgramming.Graph.Node.Node;
 
-public class VorazAproach extends TravelingSalesmanProblem {
+public class GreedyAproach extends TravelingSalesmanProblem {
   @Override
   public ArrayList<Node> solve(Graph graph, String startNodeName) {
     Node startNode = null;

@@ -7,7 +7,7 @@
       "request": "launch",
       "mainClass": "DynamicProgramming.Main",
       "projectName": "DAA_P4",
-      "args": "-f input.inp -n 6 -t 1",
+      "args": "-p ./input -a Dynamic",
       "stopOnEntry": true,
       "vmArgs": "-Dexec.mainClass=DynamicProgramming.Main"
     }

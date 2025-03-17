@@ -22,7 +22,10 @@ public class GraphFilePrinter implements GraphPrinter {
     try {
       ArrayList<Edge> edges = graph.getEdges();
       int nodeNumber = graph.getSize();
-      path += nodeNumber + fileName == "" ? fileName : "-node-graph.txt";
+      if (fileName == "") {
+        fileName =  nodeNumber + "-node-graph.txt";
+      }
+      path += "/" + fileName;
       FileWriter fileWriter = new FileWriter(path);
       fileWriter.write(nodeNumber + "\n");
       for (Edge edge : edges) {

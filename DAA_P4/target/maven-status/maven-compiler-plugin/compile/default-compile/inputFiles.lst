@@ -14,4 +14,4 @@
 /home/edhey/3oIngInformatica/DAA/DAA-P4-Programacion-Dinamica/DAA_P4/src/main/java/DynamicProgramming/Graph/Edge.java
 /home/edhey/3oIngInformatica/DAA/DAA-P4-Programacion-Dinamica/DAA_P4/src/main/java/DynamicProgramming/TravelingSalesmanProblem/BruteForceAproach.java
 /home/edhey/3oIngInformatica/DAA/DAA-P4-Programacion-Dinamica/DAA_P4/src/main/java/DynamicProgramming/Graph/GraphPrinter/GraphPrinter.java
-/home/edhey/3oIngInformatica/DAA/DAA-P4-Programacion-Dinamica/DAA_P4/src/main/java/DynamicProgramming/TravelingSalesmanProblem/VorazAproach.java
+/home/edhey/3oIngInformatica/DAA/DAA-P4-Programacion-Dinamica/DAA_P4/src/main/java/DynamicProgramming/TravelingSalesmanProblem/GreedyAproach.java

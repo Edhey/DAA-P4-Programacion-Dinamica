@@ -16,7 +16,7 @@ public class GraphGenerator {
    * @param nodeNumber The number of nodes to generate.
    * @return The generated graph.
    */
-  public static Graph generateGraph(int nodeNumber) {
+  public static Graph generateGraph(int nodeNumber, int minSize, int maxSize) {
     ArrayList<Node> nodes = new ArrayList<>();
     for (int i = 1; i <= nodeNumber; i++) {
       nodes.add(new Node(String.valueOf(i)));
@@ -26,7 +26,7 @@ public class GraphGenerator {
     ArrayList<Edge> edges = new ArrayList<>();
     for (int i = 0; i < nodes.size(); i++) {
       for (int j = i + 1; j < nodes.size(); j++) {
-        edges.add(new Edge(nodes.get(i), nodes.get(j), (int) (Math.random() * 10)));
+        edges.add(new Edge(nodes.get(i), nodes.get(j), (int) (Math.random() * (maxSize - minSize) + minSize)));
       }
     }
     return new Graph(nodesSet, edges);

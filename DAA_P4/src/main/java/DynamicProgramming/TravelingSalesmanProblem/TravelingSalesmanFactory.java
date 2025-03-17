@@ -7,10 +7,10 @@ public class TravelingSalesmanFactory {
     switch (algorithm) {
       case BRUTE_FORCE:
         return new BruteForceAproach();
-      case VORAZ:
-        return new VorazAproach();
+      case GREEDY:
+        return new GreedyAproach();
       case DYNAMIC:
-        return new DinamicPrograming();
+        return new DynamicProgramming();
       default:
         return null;
     }

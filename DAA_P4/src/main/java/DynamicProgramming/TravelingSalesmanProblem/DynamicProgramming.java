@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import DynamicProgramming.Graph.Graph;
 import DynamicProgramming.Graph.Node.Node;
 
-public class DinamicPrograming extends TravelingSalesmanProblem {
+public class DynamicProgramming extends TravelingSalesmanProblem {
   final int INF = Integer.MAX_VALUE / 2; // Para evitar overflow
   private int[][] dist = null;
   private int[][] dp = null;
   private int[][] parent = null;
   private int numberOfNodes = 0;
-  private int optimalCost = 0;
 
   @Override
   public ArrayList<Node> solve(Graph graph, String startNode) {
@@ -29,23 +28,12 @@ public class DinamicPrograming extends TravelingSalesmanProblem {
         row[i] = -1;
       }
     }
-    this.optimalCost = recursiveSolve(1, 0);
+    this.pathCost = recursiveSolve(1, 0);
     ArrayList<Integer> optimalPath = getOptimalPath();
     ArrayList<Node> path = new ArrayList<>();
     ArrayList<Node> nodes = new ArrayList<>(graph.getNodes());
     for (int i = 0; i < optimalPath.size(); i++) {
       path.add(nodes.get(optimalPath.get(i)));
-    }
-    System.out.println("Optimal cost: " + optimalCost);
-    int counter = 0;
-    for (Node node : path) {
-      counter++;
-      if (path.size() == counter) {
-        System.out.print(node.getName());
-        System.out.println();
-        break;
-      }
-      System.out.print(node.getName() + " -> ");
     }
     return path;
   }

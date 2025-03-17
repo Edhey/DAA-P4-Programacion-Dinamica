@@ -2,7 +2,7 @@ package DynamicProgramming.ArgsParser;
 
 public enum TSPAlgorithm {
   BRUTE_FORCE("BruteForce"),
-  VORAZ("Voraz"),
+  GREEDY("Greedy"),
   DYNAMIC("Dynamic");
   
   private final String algorithm;

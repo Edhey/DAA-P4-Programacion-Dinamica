@@ -10,14 +10,6 @@ public abstract class TravelingSalesmanProblem {
 
   public abstract ArrayList<Node> solve(Graph graph, String startNodeName);
 
-  public final void printSolution(ArrayList<Node> solution) {
-    System.out.println("Solution: ");
-    for (Node node : solution) {
-      System.out.print(node.getName() + " -> ");
-    }
-    System.out.println(solution.get(0).getName());
-  }
-
   public final int getPathCost() {
     return this.pathCost;
   }

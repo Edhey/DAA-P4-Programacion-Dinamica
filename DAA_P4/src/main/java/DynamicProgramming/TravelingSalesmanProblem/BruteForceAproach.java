@@ -25,7 +25,6 @@ public class BruteForceAproach extends TravelingSalesmanProblem {
     recursiveSolve(graph, bestPath, bestPathCost, path, 0);
     
     this.pathCost = bestPathCost.get();
-    System.out.println("Cost: " + this.pathCost);
     return bestPath;
   }
   
