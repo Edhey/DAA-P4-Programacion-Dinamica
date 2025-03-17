@@ -1,3 +1,17 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Informatic Engineering Degree
+ * Subject: Diseño y Análisis de Algoritmos
+ * Practice 4 - Dynamic Programming
+ *
+ * @author Himar Edhey Hernández Alonso
+ * @author Aarón Jano Barreto
+ * @since 16/03/2025
+ * @desc Class that represents a brute force approach to solve the Traveling Salesman Problem.
+ * @see https://github.com/Edhey/DAA-P4-Programacion-Dinamica
+ */
+
 package DynamicProgramming.TravelingSalesmanProblem;
 
 import java.util.ArrayList;
@@ -7,7 +21,18 @@ import DynamicProgramming.Graph.Edge;
 import DynamicProgramming.Graph.Graph;
 import DynamicProgramming.Graph.Node.Node;
 
+/**
+ * Class that represents a brute force approach to solve the Traveling Salesman Problem.
+ */
 public class BruteForceAproach extends TravelingSalesmanProblem  {
+  /**
+   * Solves the Traveling Salesman Problem using a brute force approach.
+   * @param graph The graph to solve.
+   * @param startNodeName The name of the node to start the path.
+   * @param timeLimitMiliSeconds The time limit to solve the problem.
+   * @param interrumped The flag to check if the process was interrupted.
+   * @return The best path found.
+   */
   @Override
   public ArrayList<Node> solve(Graph graph, String startNodeName, long timeLimitMiliSeconds, Interrumped interrumped) {
     Node startNode = null;
@@ -48,6 +73,15 @@ public class BruteForceAproach extends TravelingSalesmanProblem  {
     return bestPath;
   }
 
+  /**
+   * Recursive method to solve the Traveling Salesman Problem.
+   * @param graph The graph to solve.
+   * @param bestPath The best path found.
+   * @param bestPathCost The cost of the best path found.
+   * @param path The current path.
+   * @param currentCost The cost of the current path.
+   * @throws InterruptedException If the process is interrupted.
+   */
   private void recursiveSolve(Graph graph, ArrayList<Node> bestPath, AtomicInteger bestPathCost,
       ArrayList<Node> path, int currentCost) throws InterruptedException {
     if (Thread.currentThread().isInterrupted()) {

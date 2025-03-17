@@ -1,3 +1,17 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Informatic Engineering Degree
+ * Subject: Diseño y Análisis de Algoritmos
+ * Practice 4 - Dynamic Programming
+ *
+ * @author Himar Edhey Hernández Alonso
+ * @author Aarón Jano Barreto
+ * @since 16/03/2025
+ * @desc Main class of the project.
+ * @see https://github.com/Edhey/DAA-P4-Programacion-Dinamica
+ */
+
 package DynamicProgramming;
 
 import java.util.ArrayList;
@@ -64,7 +78,7 @@ public class Main {
     ArrayList<Node> nodes = new ArrayList<Node>(graph.getNodes());
     ArrayList<Node> solution = new ArrayList<Node>();
     Interrumped interrumped = new Interrumped();
-    solution.equals(tsp.solve(graph, nodes.get(0).getName(), timeLimitSec * 1000, interrumped));
+    solution = (tsp.solve(graph, nodes.get(0).getName(), timeLimitSec * 1000, interrumped));
     
     if (interrumped.get()) {
       System.out.println("The algorithm was interrupted.");
@@ -72,6 +86,11 @@ public class Main {
     
     System.out.println("Solution Path:");
     int counter = 0;
+
+    if (solution == null) {
+      System.out.println("No solution found." + "\n");
+      return;
+    }
     for (Node node : solution) {
       counter++;
       if (solution.size() == counter) {
@@ -81,7 +100,7 @@ public class Main {
       }
       System.out.print(node.getName() + " -> ");
     }
-    System.out.println("Total Cost: " + tsp.getPathCost());
+    System.out.println("Total Cost: " + tsp.getPathCost() + "\n");
   }
 
   private static void algorithmComparison(Graph graph, String fileName, int timeLimitSec) {

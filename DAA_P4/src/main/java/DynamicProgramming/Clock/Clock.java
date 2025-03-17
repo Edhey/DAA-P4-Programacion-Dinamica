@@ -3,13 +3,13 @@
  * Escuela Superior de Ingeniería y Tecnología
  * Informatic Engineering Degree
  * Subject: Diseño y Análisis de Algoritmos
- * Practice 3 - Divide and Conquer
+ * Practice 4 - Dynamic Programming
  *
  * @author Himar Edhey Hernández Alonso
  * @author Aarón Jano Barreto
  * @since 16/03/2025
  * @desc Class that represents a clock to measure the time of the algorithms.
- *
+ * @see https://github.com/Edhey/DAA-P4-Programacion-Dinamica
  */
 
 package DynamicProgramming.Clock;

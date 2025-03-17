@@ -1,3 +1,17 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Informatic Engineering Degree
+ * Subject: Diseño y Análisis de Algoritmos
+ * Practice 4 - Dynamic Programming
+ *
+ * @author Himar Edhey Hernández Alonso
+ * @author Aarón Jano Barreto
+ * @since 16/03/2025
+ * @desc Class that represents a greedy aproach for the Traveling Salesman Problem.
+ * @see https://github.com/Edhey/DAA-P4-Programacion-Dinamica
+ */
+
 package DynamicProgramming.TravelingSalesmanProblem;
 
 import java.util.ArrayList;
@@ -6,7 +20,19 @@ import DynamicProgramming.Graph.Edge;
 import DynamicProgramming.Graph.Graph;
 import DynamicProgramming.Graph.Node.Node;
 
+/**
+ * Class that represents a greedy aproach for the Traveling Salesman Problem.
+ */
 public class GreedyAproach extends TravelingSalesmanProblem {
+  
+  /**
+   * Solves the Traveling Salesman Problem using a greedy aproach.
+   * @param graph Graph to solve.
+   * @param startNodeName Name of the node to start the path.
+   * @param timeLimitMiliseconds Time limit to solve the problem.
+   * @param interrumped Interrumped object to check if the execution has been interrupted.
+   * @return ArrayList<Node> Path that solves the problem.
+   */
   @Override
   public ArrayList<Node> solve(Graph graph, String startNodeName, long timeLimitMiliseconds, Interrumped interrumped) {
     Node startNode = null;

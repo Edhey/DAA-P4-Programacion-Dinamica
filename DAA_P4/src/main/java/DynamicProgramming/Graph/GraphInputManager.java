@@ -1,3 +1,18 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Informatic Engineering Degree
+ * Subject: Diseño y Análisis de Algoritmos
+ * Practice 4 - Dynamic Programming
+ *
+ * @author Himar Edhey Hernández Alonso
+ * @author Aarón Jano Barreto
+ * @since 16/03/2025
+ * @desc Class that represents a manager for the input of the graph.
+ * @see https://github.com/Edhey/DAA-P4-Programacion-Dinamica
+ */
+
+
 package DynamicProgramming.Graph;
 
 import java.io.BufferedReader;
@@ -10,6 +25,10 @@ import java.nio.file.*;
 import DynamicProgramming.Graph.Node.Node;
 
 public class GraphInputManager {
+
+  /**
+   * Read a graph from a file and return it.
+   */
   public static Graph readInputFromFile(String path) {
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
       String linea;
@@ -36,6 +55,9 @@ public class GraphInputManager {
     return null;
   }
 
+  /**
+   * Read all the files in a directory and return an ArrayList of Graphs.
+   */
   public static ArrayList<Graph> readInputFromDirectory(String pathName) {
     Path path = Paths.get(pathName);
     ArrayList<Graph> graphs = new ArrayList<>();
