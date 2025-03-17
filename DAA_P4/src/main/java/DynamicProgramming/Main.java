@@ -30,23 +30,24 @@ public class Main {
       Path directoryPath = Paths.get(parser.path);
       try (DirectoryStream<Path> stream = Files.newDirectoryStream(directoryPath)) {
         if (parser.comparison) {
-          System.out.printf("%-20s %-20s %-20s %-20s %-20s %-15s %-20s%n", 
-            "Instance", 
-            "BruteForce Value", 
-            "BruteForce Time(ms)", 
-            "Dynamic Value", 
-            "Dynamic Time(ms)", 
-            "Greedy Value", 
-            "Greedy Time(ms)");
+          System.out.printf("%-20s %-20s %-20s %-20s %-20s %-15s %-20s%n",
+              "Instance",
+              "BruteForce Value",
+              "BruteForce Time(µs)",
+              "Dynamic Value",
+              "Dynamic Time(µs)",
+              "Greedy Value",
+              "Greedy Time(µs)");
         }
 
         for (Path file : stream) {
           Graph graph = GraphInputManager.readInputFromFile(file.toString());
           String filePath = file.getFileName().toString();
           if (parser.comparison) {
-            algorithmComparison(graph, filePath);
+            algorithmComparison(graph, filePath, parser.timeLimit);
           } else {
-            algorithmExecution(graph, TravelingSalesmanFactory.getTravelingSalesmanProblem(parser.algorithm));
+            algorithmExecution(graph, TravelingSalesmanFactory.getTravelingSalesmanProblem(parser.algorithm),
+                parser.timeLimit);
           }
         }
       } catch (IOException | DirectoryIteratorException error) {
@@ -55,13 +56,20 @@ public class Main {
     }
   }
 
-  public static void algorithmExecution(Graph graph, TravelingSalesmanProblem tsp) {
+  private static void algorithmExecution(Graph graph, TravelingSalesmanProblem tsp, int timeLimitSec) {
     if (graph.getNodes().size() <= 2) {
       System.out.println("The graph must have at least 3 nodes.");
       return;
     }
     ArrayList<Node> nodes = new ArrayList<Node>(graph.getNodes());
-    ArrayList<Node> solution = tsp.solve(graph, nodes.get(0).getName());
+    ArrayList<Node> solution = new ArrayList<Node>();
+    Interrumped interrumped = new Interrumped();
+    solution.equals(tsp.solve(graph, nodes.get(0).getName(), timeLimitSec * 1000, interrumped));
+    
+    if (interrumped.get()) {
+      System.out.println("The algorithm was interrupted.");
+    }
+    
     System.out.println("Solution Path:");
     int counter = 0;
     for (Node node : solution) {
@@ -76,48 +84,70 @@ public class Main {
     System.out.println("Total Cost: " + tsp.getPathCost());
   }
 
-  public static void algorithmComparison(Graph graph, String fileName) {
+  private static void algorithmComparison(Graph graph, String fileName, int timeLimitSec) {
     if (graph.getNodes().size() <= 2) {
       System.out.println("The graph must have at least 3 nodes.");
       return;
     }
-    int bruteForceValue = 0;
-    long bruteForceTime = 0;
-    int dynamicProgrammingValue = 0;
-    long dynamicProgrammingTime = 0;
-    int greedyValue = 0;
-    long greedyTime = 0;
-    Clock clock = new Clock();
-    
-    BruteForceAproach bruteForce = new BruteForceAproach();
-    clock.start();
-    String firstNodeName = graph.getNodes().iterator().next().getName();
-    bruteForce.solve(graph, firstNodeName);
-    clock.stop();
-    bruteForceValue = bruteForce.getPathCost();
-    bruteForceTime = clock.getTimeMiliseconds();
-    
-    DynamicProgramming dynamicProgramming = new DynamicProgramming();
-    clock.start();
-    dynamicProgramming.solve(graph, firstNodeName);
-    clock.stop();
-    dynamicProgrammingValue = dynamicProgramming.getPathCost();
-    dynamicProgrammingTime = clock.getTimeMiliseconds();
-    
-    GreedyAproach greedy = new GreedyAproach();
-    clock.start();
-    greedy.solve(graph, firstNodeName);
-    clock.stop();
-    greedyValue = greedy.getPathCost();
-    greedyTime = clock.getTimeMiliseconds();
+    String bruteForceValue = "0";
+    String bruteForceTime = "0";
+    String dynamicProgrammingValue = "0";
+    String dynamicProgrammingTime = "0";
+    String greedyValue = "0";
+    String greedyTime = "0";
+    for (TSPAlgorithm algorithm : TSPAlgorithm.values()) {
+      TravelingSalesmanProblem tsp = TravelingSalesmanFactory.getTravelingSalesmanProblem(algorithm);
+      ArrayList<String> result = getTimeAndValueTSP(tsp, graph, graph.getNodes().iterator().next().getName(), timeLimitSec);
+      switch (algorithm) {
+        case BRUTE_FORCE:
+          bruteForceValue = result.get(0);
+          bruteForceTime = result.get(1);
+          break;
+        case DYNAMIC:
+          dynamicProgrammingValue = result.get(0);
+          dynamicProgrammingTime = result.get(1);
+          break;
+        case GREEDY:
+          greedyValue = result.get(0);
+          greedyTime = result.get(1);
+          break;
+      }
+    }
 
-    System.out.printf("%-20s %-20d %-20d %-20d %-20d %-15d %-20d%n", 
-      fileName, 
-      bruteForceValue, 
-      bruteForceTime, 
-      dynamicProgrammingValue, 
-      dynamicProgrammingTime, 
-      greedyValue, 
-      greedyTime);
+    System.out.printf("%-20s %-20s %-20s %-20s %-20s %-15s %-20s%n",
+        fileName,
+        bruteForceValue,
+        bruteForceTime,
+        dynamicProgrammingValue,
+        dynamicProgrammingTime,
+        greedyValue,
+        greedyTime);
+  }
+
+  private static ArrayList<String> getTimeAndValueTSP(TravelingSalesmanProblem algorithm, 
+  Graph graph, String startNode, int timeLimitSec) {
+    Clock clock = new Clock();
+    int value = -1;
+    long time = 0;
+    Interrumped interrumped = new Interrumped();
+
+    clock.start();
+    algorithm.solve(graph, startNode, timeLimitSec * 1000, interrumped);
+    value = algorithm.getPathCost();
+
+
+    clock.stop();
+    if (time != -1) {
+      time = clock.getTimeMicroseconds();
+    }
+
+    ArrayList<String> result = new ArrayList<String>();
+    result.add(String.valueOf(value));
+    if (interrumped.get()) {
+      result.add("EXCESIVE");
+    } else {
+      result.add(String.valueOf(time));
+    }
+    return result;
   }
 }

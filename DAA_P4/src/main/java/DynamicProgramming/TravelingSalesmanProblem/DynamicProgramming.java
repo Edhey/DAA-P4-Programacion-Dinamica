@@ -14,7 +14,7 @@ public class DynamicProgramming extends TravelingSalesmanProblem {
   private int numberOfNodes = 0;
 
   @Override
-  public ArrayList<Node> solve(Graph graph, String startNode) {
+  public ArrayList<Node> solve(Graph graph, String startNode, long timeLimitMiliSeconds, Interrumped interrumped) {
     this.dist = graphToMatrix(graph);
     this.numberOfNodes = dist.length;
     this.dp = new BigInteger[1 << numberOfNodes][numberOfNodes];
@@ -29,7 +29,24 @@ public class DynamicProgramming extends TravelingSalesmanProblem {
         row[i] = -1;
       }
     }
-    this.pathCost = recursiveSolve(BigInteger.ONE, 0);
+    
+    Thread taskThread = new Thread(() -> {
+      this.pathCost = recursiveSolve(BigInteger.ONE, 0);      
+    });
+
+    taskThread.start();
+
+    try {
+        taskThread.join(timeLimitMiliSeconds);
+        if (taskThread.isAlive()) {
+            taskThread.interrupt();
+            interrumped.set(true);
+        }
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+        interrumped.set(true);      
+    }
+
     ArrayList<Integer> optimalPath = getOptimalPath();
     ArrayList<Node> path = new ArrayList<>();
     ArrayList<Node> nodes = new ArrayList<>(graph.getNodes());
@@ -40,6 +57,11 @@ public class DynamicProgramming extends TravelingSalesmanProblem {
   }
 
   private int recursiveSolve(BigInteger mask, int pos) {
+    if (Thread.currentThread().isInterrupted()) {
+      // Return the best solution found so far
+      return dp[mask.intValue()][pos].equals(BigInteger.valueOf(-1)) ? INF : dp[mask.intValue()][pos].intValue();
+    }
+    
     if (mask.equals(BigInteger.ONE.shiftLeft(numberOfNodes).subtract(BigInteger.ONE))) {
       return dist[pos][0]; // Return to starting city
     }
@@ -50,7 +72,7 @@ public class DynamicProgramming extends TravelingSalesmanProblem {
 
     int minCost = INF;
     int bestPrev = -1; // Para rastrear el camino óptimo
-
+    
     for (int next = 0; next < numberOfNodes; next++) {
       if (mask.and(BigInteger.ONE.shiftLeft(next)).equals(BigInteger.ZERO)) { // If city is not visited
         int newCost = dist[pos][next] + recursiveSolve(mask.or(BigInteger.ONE.shiftLeft(next)), next);
@@ -62,6 +84,7 @@ public class DynamicProgramming extends TravelingSalesmanProblem {
     }
     parent[mask.intValue()][pos] = bestPrev; // Save the best decision
     dp[mask.intValue()][pos] = BigInteger.valueOf(minCost);
+
     return minCost;
   }
 

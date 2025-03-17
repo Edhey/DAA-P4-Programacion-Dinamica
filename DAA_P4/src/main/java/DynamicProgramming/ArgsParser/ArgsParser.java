@@ -23,7 +23,7 @@ public class ArgsParser {
   public String inputFile;
   public String outputFile;
   public String path;
-  public int timeLimit = 5;
+  public int timeLimit = 5 * 60;
   public int nodeNumber = 4;
   public int minValue = 1;
   public int maxValue = 10;
@@ -70,7 +70,7 @@ public class ArgsParser {
         .build());
     options.addOption(Option.builder("t")
         .longOpt("time-limit")
-        .desc("time limit for the execution in minutes")
+        .desc("time limit for the execution in seconds")
         .hasArg()
         .argName("limit")
         .build());

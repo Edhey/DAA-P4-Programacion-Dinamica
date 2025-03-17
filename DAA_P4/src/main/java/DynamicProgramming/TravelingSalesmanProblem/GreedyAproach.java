@@ -8,7 +8,7 @@ import DynamicProgramming.Graph.Node.Node;
 
 public class GreedyAproach extends TravelingSalesmanProblem {
   @Override
-  public ArrayList<Node> solve(Graph graph, String startNodeName) {
+  public ArrayList<Node> solve(Graph graph, String startNodeName, long timeLimitMiliseconds, Interrumped interrumped) {
     Node startNode = null;
     for (Node node : graph.getNodes()) {
       if (node.getName().equals(startNodeName)) {
