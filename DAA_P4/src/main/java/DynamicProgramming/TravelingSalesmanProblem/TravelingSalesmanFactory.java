@@ -25,6 +25,8 @@ public class TravelingSalesmanFactory {
         return new GreedyAproach();
       case DYNAMIC:
         return new DynamicProgramming();
+      case BRUTE_GREEDY:
+        return new BruteGreedyAproach();
       default:
         return null;
     }

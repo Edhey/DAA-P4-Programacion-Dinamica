@@ -75,6 +75,8 @@ public class Main {
       System.out.println("The graph must have at least 3 nodes.");
       return;
     }
+    
+    System.out.println("Algorithm: " + tsp.getClass().getSimpleName());
     ArrayList<Node> nodes = new ArrayList<Node>(graph.getNodes());
     ArrayList<Node> solution = new ArrayList<Node>();
     Interrumped interrumped = new Interrumped();
@@ -129,6 +131,8 @@ public class Main {
         case GREEDY:
           greedyValue = result.get(0);
           greedyTime = result.get(1);
+          break;
+        default:
           break;
       }
     }

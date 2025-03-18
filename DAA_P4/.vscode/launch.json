@@ -7,7 +7,7 @@
       "request": "launch",
       "mainClass": "DynamicProgramming.Main",
       "projectName": "DAA_P4",
-      "args": "-p input -t 10 -a Dynamic",
+      "args": "-p input/prueba -a BruteGreedy -t 10",
       "stopOnEntry": true,
       "vmArgs": "-Dexec.mainClass=DynamicProgramming.Main"
     }

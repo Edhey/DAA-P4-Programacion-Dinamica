@@ -20,7 +20,8 @@ package DynamicProgramming.ArgsParser;
 public enum TSPAlgorithm {
   BRUTE_FORCE("BruteForce"),
   GREEDY("Greedy"),
-  DYNAMIC("Dynamic");
+  DYNAMIC("Dynamic"),
+  BRUTE_GREEDY("BruteGreedy");
   
   private final String algorithm;
 
