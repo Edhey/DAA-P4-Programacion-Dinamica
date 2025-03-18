@@ -80,12 +80,15 @@ public class Main {
     ArrayList<Node> nodes = new ArrayList<Node>(graph.getNodes());
     ArrayList<Node> solution = new ArrayList<Node>();
     Interrumped interrumped = new Interrumped();
+    Clock clock = new Clock();
+    clock.start();
     solution = (tsp.solve(graph, nodes.get(0).getName(), timeLimitSec * 1000, interrumped));
-    
+    clock.stop();
     if (interrumped.get()) {
       System.out.println("The algorithm was interrupted.");
     }
     
+    System.out.println("Time: " + clock.getTimeMicroseconds() + " µs");
     System.out.println("Solution Path:");
     int counter = 0;
 

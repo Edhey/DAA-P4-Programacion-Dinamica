@@ -143,6 +143,11 @@ public class DynamicProgramming extends TravelingSalesmanProblem {
     return pathIndices;
   }
 
+  /**
+   * Converts a graph to an adjacency matrix.
+   * @param graph Graph to convert.
+   * @return The adjacency matrix.
+   */
   static public int[][] graphToMatrix(Graph graph) {
     int[][] adjacencyMatrix = new int[graph.getNodes().size()][graph.getNodes().size()];
     ArrayList<Node> graphNodes = new ArrayList<Node>(graph.getNodes());
